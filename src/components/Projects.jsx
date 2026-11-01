@@ -1,5 +1,7 @@
 import './Projects.css'
 
+// Iedere kaart krijgt een eigen kleur.
+// Bron: mijn CSS attr() experiment uit de Random-chat.
 const projects = [
   {
     number: '01',
@@ -8,7 +10,7 @@ const projects = [
       'My learning journal, where I document what I explore and learn during my studies.',
     image: '/images/daily-journal.png',
     imageAlt: 'My Daily Journal website',
-    className: 'project-preview-journal',
+    color: '#e4e8dc',
     link: 'https://jasinahmed.github.io/i-love-web/',
     linkText: 'View journal',
     category: 'Learning / Documentation',
@@ -20,7 +22,7 @@ const projects = [
       'A project for Funda. Explore the repository to see the code and project documentation.',
     image: '/images/funda.png',
     imageAlt: 'A preview of my Funda project',
-    className: 'project-preview-funda',
+    color: '#f3e4d3',
     link: 'https://github.com/JasinAhmed/proof-of-concept',
     linkText: 'View repository',
     category: 'Frontend development',
@@ -32,7 +34,7 @@ const projects = [
       'A team project for AdConnect. Explore the shared repository to see the code and project documentation.',
     image: '/images/adconnect.png',
     imageAlt: 'A preview of the AdConnect project',
-    className: 'project-preview-adconnect',
+    color: '#e4e4f0',
     link: 'https://github.com/Tjeerd-JW/pleasurable-ui',
     linkText: 'View repository',
     category: 'Team project / Frontend development',
@@ -54,11 +56,14 @@ export default function Projects() {
       </header>
 
       <div className="projects-grid">
+        {/* Met map gebruik ik dezelfde opbouw voor ieder project. */}
         {projects.map((project) => (
           <article className="project" key={project.number}>
+            {/* CSS leest de achtergrondkleur uit data-color. */}
             <a
-              className={`project-preview ${project.className}`}
+              className="project-preview"
               href={project.link}
+              data-color={project.color}
             >
               <span className="project-number">
                 {project.number} — {project.title}
