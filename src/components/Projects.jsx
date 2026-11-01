@@ -8,8 +8,8 @@ const projects = [
     title: 'Daily Journal',
     description:
       'My learning journal, where I document what I explore and learn during my studies.',
-    image: '/images/daily-journal.png',
-    imageAlt: 'My Daily Journal website',
+    image: 'public/daily-journal.png',
+    imageAlt: 'My Daily Journal with daily notes and learning activities',
     color: '#e4e8dc',
     link: 'https://jasinahmed.github.io/i-love-web/',
     linkText: 'View journal',
@@ -19,24 +19,26 @@ const projects = [
     number: '02',
     title: 'Funda',
     description:
-      'A project for Funda. Explore the repository to see the code and project documentation.',
-    image: '/images/funda.png',
-    imageAlt: 'A preview of my Funda project',
+      'A housing website with property listings and detail pages. Explore the live website or view the code and documentation on GitHub.',
+    image: 'public/funda.png',
+    imageAlt: 'My Funda project showing property listings with photos and prices',
     color: '#f3e4d3',
-    link: 'https://github.com/JasinAhmed/proof-of-concept',
-    linkText: 'View repository',
+    link: 'https://proof-of-concept-uuxw.onrender.com',
+    linkText: 'View website',
+    github: 'https://github.com/JasinAhmed/proof-of-concept',
     category: 'Frontend development',
   },
   {
     number: '03',
     title: 'AdConnect',
     description:
-      'A team project for AdConnect. Explore the shared repository to see the code and project documentation.',
-    image: '/images/adconnect.png',
-    imageAlt: 'A preview of the AdConnect project',
+      'A team project for a platform about Associate degrees, featuring news, events and information about the programmes.',
+    image: 'public/adconnect.png',
+    imageAlt: 'The AdConnect homepage introducing the platform for Associate degrees',
     color: '#e4e4f0',
-    link: 'https://github.com/Tjeerd-JW/pleasurable-ui',
-    linkText: 'View repository',
+    link: 'https://pleasurable-ui-vyle.onrender.com/',
+    linkText: 'View website',
+    github: 'https://github.com/Tjeerd-JW/pleasurable-ui',
     category: 'Team project / Frontend development',
   },
 ]
@@ -93,6 +95,15 @@ export default function Projects() {
                     {project.linkText} <span>↗</span>
                   </a>
                 </li>
+
+                {/* Alleen tonen als het project een GitHub-link heeft. */}
+                {project.github && (
+                  <li>
+                    <a href={project.github}>
+                      GitHub <span>↗</span>
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           </article>
