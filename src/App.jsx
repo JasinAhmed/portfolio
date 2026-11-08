@@ -2,6 +2,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Projects from './components/Projects'
+import About from './components/About'
 
 // Met export default maak ik App beschikbaar voor andere bestanden.
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
       <main>
         <Hero />
         <Projects />
+        <About />
       </main>
     </>
   )
