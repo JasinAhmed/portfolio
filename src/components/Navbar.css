@@ -1,3 +1,10 @@
+/* Laat links binnen de pagina soepel scrollen. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 .site-header {
   padding-inline: 20px;
   background: var(--page-background);
@@ -121,8 +128,7 @@
   transform: rotate(-45deg);
 }
 
-/* Mobiel: het menu klapt open zonder vaste hoogte. */
-
+/* Op mobiel klapt het menu open zonder vaste hoogte. */
 .navbar-menu {
   grid-column: 1 / -1;
   display: grid;
@@ -228,8 +234,7 @@
   outline-offset: 5px;
 }
 
-/* Grotere schermen: links staan naast elkaar. */
-
+/* Vanaf 768px staan de links naast elkaar. */
 @media (min-width: 768px) {
   .site-header {
     padding-inline: 40px;
@@ -339,9 +344,12 @@
   }
 }
 
-/* Respecteer de bewegingsvoorkeur van de bezoeker. */
-
+/* Bij minder beweging springen links direct naar hun doel. */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .site-header,
   .site-header *,
   .site-header *::after {

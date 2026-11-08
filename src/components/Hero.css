@@ -1,232 +1,109 @@
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 .hero {
   max-width: 1200px;
   margin-inline: auto;
   padding: 36px 20px 40px;
   color: var(--text-color);
-}
 
-.hero-name {
-  margin: 0;
-  font-size: clamp(38px, 10vw, 128px);
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.06em;
-  animation: hero-enter 700ms ease-out both;
-}
-
-.hero-name span {
-  color: var(--accent-color);
-}
-
-.hero-content {
-  display: grid;
-  gap: 48px;
-  margin-top: 36px;
-}
-
-.hero-introduction {
-  animation: hero-enter 700ms ease-out 120ms both;
-}
-
-.hero-status {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 18px;
-  color: var(--accent-color);
-  font-size: 12px;
-}
-
-.hero-status::before {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  content: '';
-}
-
-.hero-introduction h2 {
-  margin: 0;
-  font-size: clamp(26px, 5vw, 40px);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.04em;
-}
-
-.hero-description {
-  max-width: 390px;
-  margin: 18px 0 0;
-  color: var(--muted-color);
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-.hero-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  min-height: 44px;
-  margin-top: 24px;
-  padding: 12px 20px;
-  border: 1px solid var(--text-color);
-  border-radius: 999px;
-  background: var(--text-color);
-  color: var(--page-background);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  transition:
-    transform 250ms ease,
-    background-color 250ms ease,
-    color 250ms ease;
-}
-
-.hero-link span {
-  display: inline-block;
-  transition: transform 250ms ease;
-}
-
-.hero-link:hover {
-  transform: translateY(-3px);
-  background: transparent;
-  color: var(--text-color);
-}
-
-.hero-link:hover span {
-  transform: translateY(3px);
-}
-
-.hero-link:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 5px;
-}
-
-/* Decoratieve zon, volledig gemaakt met CSS. */
-
-.hero-artwork {
-  display: grid;
-  justify-items: center;
-  align-content: center;
-  gap: 24px;
-  padding-block: 12px;
-  animation: hero-enter 700ms ease-out 240ms both;
-}
-
-.hero-sun {
-  position: relative;
-  width: 144px;
-  height: 144px;
-  color: var(--accent-color);
-  animation: sun-turn 60s linear infinite;
-}
-
-.hero-sun::before {
-  position: absolute;
-  inset: 40px;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  content: '';
-}
-
-.hero-sun::after {
-  position: absolute;
-  inset: 0;
-  background: repeating-conic-gradient(
-    from -0.5deg,
-    currentColor 0deg 1deg,
-    transparent 1deg 45deg
-  );
-  border-radius: 50%;
-  mask: radial-gradient(
-    circle,
-    transparent 0 36px,
-    #000 37px 66px,
-    transparent 67px
-  );
-  content: '';
-}
-
-.hero-artwork p {
-  margin: 0;
-  color: var(--muted-color);
-  font-size: 9px;
-  letter-spacing: 1.2px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.hero-skills {
-  margin: 40px 0 0;
-  color: var(--muted-color);
-  font-size: 9px;
-  line-height: 1.8;
-  letter-spacing: 1px;
-  animation: hero-enter 700ms ease-out 360ms both;
-}
-
-/* Tablet en desktop. */
-
-@media (min-width: 768px) {
-  .hero {
-    padding: 40px 40px 64px;
+  & .hero-role {
+    margin: 0 0 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
   }
 
-  .hero-content {
-    grid-template-columns: 1.2fr 1fr;
+  & .hero-name {
+    margin: 0;
+    font-size: clamp(2.5rem, 1.5rem + 5vw, 6rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.05em;
+  }
+
+  & .hero-description {
+    max-width: 55ch;
+    margin: 16px 0 0;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  & .hero-link {
+    display: inline-flex;
     align-items: center;
-    gap: 64px;
-    margin-top: 48px;
+    gap: 10px;
+    min-height: 44px;
+    max-width: 100%;
+    margin-top: 24px;
+    padding: 10px 18px;
+    border: 1px solid var(--text-color);
+    border-radius: 999px;
+    background-color: var(--text-color);
+    color: var(--page-background);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    text-underline-offset: 4px;
+
+    &:is(:hover, :focus-visible) {
+      background-color: var(--page-background);
+      color: var(--text-color);
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--text-color);
+      outline-offset: 4px;
+    }
   }
 
-  .hero-artwork {
-    gap: 40px;
+  & .hero-link-arrow {
+    display: inline-block;
   }
 
-  .hero-sun {
-    width: 180px;
-    height: 180px;
+  @media (min-width: 768px) {
+    padding: 56px 40px 64px;
   }
 
-  .hero-sun::before {
-    inset: 52px;
-  }
+  /* De naam, intro en link komen kort na elkaar in beeld. */
+  @media (prefers-reduced-motion: no-preference) {
+    & .hero-name {
+      animation: hero-enter 400ms ease-out;
+    }
 
-  .hero-sun::after {
-    mask: radial-gradient(
-      circle,
-      transparent 0 44px,
-      #000 45px 84px,
-      transparent 85px
-    );
-  }
+    & .hero-description {
+      animation: hero-enter 400ms ease-out 80ms backwards;
+    }
 
-  .hero-skills {
-    margin-top: 56px;
+    & .hero-link {
+      animation: hero-enter 400ms ease-out 160ms backwards;
+      transition:
+        background-color 180ms ease,
+        color 180ms ease;
+    }
+
+    & .hero-link-arrow {
+      transition: transform 180ms ease;
+    }
+
+    & .hero-link:is(:hover, :focus-visible) .hero-link-arrow {
+      transform: translateY(3px);
+    }
   }
 }
 
 @keyframes hero-enter {
   from {
-    opacity: 0;
-    transform: translateY(16px);
+    opacity: 0.65;
+    transform: translateY(6px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes sun-turn {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero,
-  .hero * {
-    animation: none;
-    transition: none;
   }
 }
