@@ -32,7 +32,7 @@ export default function Navbar() {
       <nav className="navbar" onKeyDown={handleKeyDown}>
         <a
           className="navbar-logo"
-          href="#home"
+          href="/#home"
           onClick={closeMenu}
         >
           JA<span>.</span>
@@ -72,7 +72,7 @@ export default function Navbar() {
           <div className="navbar-menu-inner">
             <ul className="navbar-links">
               <li>
-                <a href="#projects" onClick={closeMenu}>
+                <a href="/#projects" onClick={closeMenu}>
                   <span className="link-number">01</span>
                   Work
                   <span className="link-arrow">↗</span>
@@ -80,7 +80,7 @@ export default function Navbar() {
               </li>
 
               <li>
-                <a href="#about" onClick={closeMenu}>
+                <a href="/#about" onClick={closeMenu}>
                   <span className="link-number">02</span>
                   About
                   <span className="link-arrow">↗</span>
@@ -88,7 +88,7 @@ export default function Navbar() {
               </li>
 
               <li>
-                <a href="#contact" onClick={closeMenu}>
+                <a href="/contact" onClick={closeMenu}>
                   <span className="link-number">03</span>
                   Contact
                   <span className="link-arrow">↗</span>
