@@ -22,7 +22,9 @@ export default function Navbar() {
   }
 
   function toggleTheme() {
-    setTheme((current) => current === 'light' ? 'dark' : 'light')
+    setTheme((current) => (
+      current === 'light' ? 'dark' : 'light'
+    ))
   }
 
   return (
@@ -35,10 +37,6 @@ export default function Navbar() {
         >
           JA<span>.</span>
         </a>
-
-        <span className="navbar-caption">
-          Frontend developer
-        </span>
 
         <div className="navbar-actions">
           <button

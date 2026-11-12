@@ -7,10 +7,14 @@ export default function About() {
 
       <div className="about-content">
         <p>
-          I like learning by trying things out. When I see something on a
-          website and wonder how it works, I try building it myself.
-          During my internship, I’d like to learn how other developers
-          work and get feedback on what I build.
+          I’m 21 and study Frontend Design &amp; Development at FDND.
+          I like learning by trying things out. When I see something
+          on a website and wonder how it works, I try building it myself.
+        </p>
+
+        <p>
+          Outside of coding, I’m interested in history, enjoy reading
+          books and like watching films and series.
         </p>
       </div>
     </section>

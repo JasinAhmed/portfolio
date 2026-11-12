@@ -1,4 +1,4 @@
-/* Laat links binnen de pagina soepel scrollen. */
+/* Ik laat de links soepel naar de secties scrollen. */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -9,7 +9,20 @@
   padding-inline: 20px;
   background: var(--page-background);
   color: var(--text-color);
-  animation: header-enter 600ms ease-out both;
+
+  & a:focus-visible,
+  & button:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 5px;
+  }
+
+  @media (min-width: 768px) {
+    padding-inline: 40px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: header-enter 600ms ease-out both;
+  }
 }
 
 .navbar {
@@ -20,6 +33,12 @@
   min-height: 80px;
   margin-inline: auto;
   border-bottom: 1px solid var(--border-color);
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr auto auto;
+    column-gap: 24px;
+    min-height: 88px;
+  }
 }
 
 .navbar-logo {
@@ -29,20 +48,16 @@
   font-weight: 800;
   letter-spacing: -1.5px;
   text-decoration: none;
-}
 
-.navbar-logo span {
-  display: inline-block;
-  color: var(--accent-color);
-  transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1.5);
-}
+  & span {
+    display: inline-block;
+    color: var(--accent-color);
+    transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1.5);
+  }
 
-.navbar-logo:hover span {
-  transform: translateY(-5px);
-}
-
-.navbar-caption {
-  display: none;
+  &:is(:hover, :focus-visible) span {
+    transform: translateY(-5px);
+  }
 }
 
 .navbar-actions {
@@ -50,6 +65,11 @@
   justify-self: end;
   align-items: center;
   gap: 12px;
+
+  @media (min-width: 768px) {
+    grid-column: 3;
+    grid-row: 1;
+  }
 }
 
 .theme-toggle,
@@ -70,12 +90,11 @@
   transition:
     background-color 200ms ease,
     border-color 200ms ease;
-}
 
-.theme-toggle:hover,
-.menu-toggle:hover {
-  border-color: var(--accent-color);
-  background: var(--soft-background);
+  &:is(:hover, :focus-visible) {
+    border-color: var(--accent-color);
+    background: var(--soft-background);
+  }
 }
 
 .theme-icon {
@@ -86,10 +105,28 @@
   font-size: 20px;
   line-height: 1;
   transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.is-dark {
+    transform: rotate(180deg);
+  }
 }
 
-.theme-icon.is-dark {
-  transform: rotate(180deg);
+.menu-toggle {
+  &.is-open .menu-icon span {
+    top: 7px;
+
+    &:first-child {
+      transform: rotate(45deg);
+    }
+
+    &:last-child {
+      transform: rotate(-45deg);
+    }
+  }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
 .menu-icon {
@@ -97,38 +134,28 @@
   display: block;
   width: 18px;
   height: 14px;
+
+  & span {
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 1px;
+    background: currentColor;
+    transition:
+      top 300ms ease,
+      transform 300ms ease;
+
+    &:first-child {
+      top: 4px;
+    }
+
+    &:last-child {
+      top: 10px;
+    }
+  }
 }
 
-.menu-icon span {
-  position: absolute;
-  left: 0;
-  width: 18px;
-  height: 1px;
-  background: currentColor;
-  transition:
-    top 300ms ease,
-    transform 300ms ease;
-}
-
-.menu-icon span:first-child {
-  top: 4px;
-}
-
-.menu-icon span:last-child {
-  top: 10px;
-}
-
-.menu-toggle.is-open .menu-icon span:first-child {
-  top: 7px;
-  transform: rotate(45deg);
-}
-
-.menu-toggle.is-open .menu-icon span:last-child {
-  top: 7px;
-  transform: rotate(-45deg);
-}
-
-/* Op mobiel klapt het menu open zonder vaste hoogte. */
+/* Op mobiel klapt mijn menu open. */
 .navbar-menu {
   grid-column: 1 / -1;
   display: grid;
@@ -139,18 +166,48 @@
     grid-template-rows 400ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 250ms ease,
     visibility 0s 400ms;
-}
 
-.navbar-menu.is-open {
-  grid-template-rows: 1fr;
-  visibility: visible;
-  opacity: 1;
-  transition-delay: 0s;
+  &.is-open {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+
+    & li {
+      opacity: 1;
+      transform: translateY(0);
+      transition-duration: 350ms;
+
+      &:nth-child(1) {
+        transition-delay: 80ms;
+      }
+
+      &:nth-child(2) {
+        transition-delay: 130ms;
+      }
+
+      &:nth-child(3) {
+        transition-delay: 180ms;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    grid-column: 2;
+    grid-row: 1;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .navbar-menu-inner {
   min-height: 0;
   overflow: hidden;
+
+  @media (min-width: 768px) {
+    overflow: visible;
+  }
 }
 
 .navbar-links {
@@ -160,61 +217,99 @@
   margin: 0;
   padding: 16px 0 24px;
   list-style: none;
-}
 
-.navbar-links li {
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 200ms ease,
-    transform 200ms ease;
-}
+  & li {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease;
+  }
 
-.navbar-menu.is-open li {
-  opacity: 1;
-  transform: translateY(0);
-  transition-duration: 350ms;
-}
+  & a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 58px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: inherit;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    text-decoration: none;
+    transition:
+      color 200ms ease,
+      background-color 200ms ease;
 
-.navbar-menu.is-open li:nth-child(1) {
-  transition-delay: 80ms;
-}
+    &:is(:hover, :focus-visible) {
+      background: var(--soft-background);
+      color: var(--accent-color);
+    }
 
-.navbar-menu.is-open li:nth-child(2) {
-  transition-delay: 130ms;
-}
+    &:is(:hover, :focus-visible) .link-arrow {
+      transform: translate(3px, -3px);
+    }
+  }
 
-.navbar-menu.is-open li:nth-child(3) {
-  transition-delay: 180ms;
-}
+  /* Vanaf 768px staan de links naast elkaar. */
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 24px;
+    padding: 0;
 
-.navbar-links a {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  min-height: 58px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  color: inherit;
-  font-size: 26px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  text-decoration: none;
-  transition:
-    color 200ms ease,
-    background-color 200ms ease;
-}
+    & li {
+      opacity: 1;
+      transform: none;
+    }
 
-.navbar-links a:hover {
-  background: var(--soft-background);
-  color: var(--accent-color);
+    & a {
+      position: relative;
+      gap: 5px;
+      min-height: 44px;
+      padding: 8px 0;
+      border-radius: 0;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: normal;
+
+      &::after {
+        position: absolute;
+        right: 0;
+        bottom: 5px;
+        left: 0;
+        height: 1px;
+        background: var(--accent-color);
+        content: '';
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 250ms ease;
+      }
+
+      &:is(:hover, :focus-visible) {
+        background: transparent;
+      }
+
+      &:is(:hover, :focus-visible)::after {
+        transform: scaleX(1);
+      }
+    }
+
+    & li:last-child .link-arrow {
+      display: inline-block;
+    }
+  }
 }
 
 .link-number {
   color: var(--muted-color);
   font-size: 10px;
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: normal;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
 .link-arrow {
@@ -222,113 +317,10 @@
   color: var(--accent-color);
   font-size: 22px;
   transition: transform 250ms ease;
-}
 
-.navbar-links a:hover .link-arrow {
-  transform: translate(3px, -3px);
-}
-
-.navbar a:focus-visible,
-.navbar button:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 5px;
-}
-
-/* Vanaf 768px staan de links naast elkaar. */
-@media (min-width: 768px) {
-  .site-header {
-    padding-inline: 40px;
-  }
-
-  .navbar {
-    grid-template-columns: auto 1fr auto auto;
-    column-gap: 32px;
-    min-height: 88px;
-  }
-
-  .navbar-caption {
-    display: block;
-    color: var(--muted-color);
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-
-  .navbar-actions {
-    grid-column: 4;
-    grid-row: 1;
-  }
-
-  .menu-toggle {
-    display: none;
-  }
-
-  .navbar-menu {
-    grid-column: 3;
-    grid-row: 1;
-    display: block;
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .navbar-menu-inner {
-    overflow: visible;
-  }
-
-  .navbar-links {
-    flex-direction: row;
-    gap: 24px;
-    padding: 0;
-  }
-
-  .navbar-links li {
-    opacity: 1;
-    transform: none;
-  }
-
-  .navbar-links a {
-    position: relative;
-    gap: 5px;
-    min-height: 44px;
-    padding: 8px 0;
-    border-radius: 0;
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0;
-  }
-
-  .navbar-links a::after {
-    position: absolute;
-    right: 0;
-    bottom: 5px;
-    left: 0;
-    height: 1px;
-    background: var(--accent-color);
-    content: '';
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 250ms ease;
-  }
-
-  .navbar-links a:hover {
-    background: transparent;
-  }
-
-  .navbar-links a:hover::after {
-    transform: scaleX(1);
-  }
-
-  .link-number {
-    display: none;
-  }
-
-  .link-arrow {
+  @media (min-width: 768px) {
     display: none;
     font-size: 14px;
-  }
-
-  .navbar-links li:last-child .link-arrow {
-    display: inline-block;
   }
 }
 
@@ -344,7 +336,7 @@
   }
 }
 
-/* Bij minder beweging springen links direct naar hun doel. */
+/* Ik respecteer de voorkeur voor minder beweging. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -352,6 +344,7 @@
 
   .site-header,
   .site-header *,
+  .site-header *::before,
   .site-header *::after {
     animation: none;
     transition: none;

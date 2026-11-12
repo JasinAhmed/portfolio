@@ -1,3 +1,27 @@
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'General Sans';
+  src: url('/fonts/GeneralSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
 
@@ -8,7 +32,8 @@
   --soft-background: #edf1e8;
   --border-color: #dce3d7;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'General Sans', Arial, sans-serif;
+  font-weight: 400;
 }
 
 :root[data-theme='dark'] {
@@ -32,7 +57,35 @@ body {
   color: var(--text-color);
 }
 
+/* Formulierelementen gebruiken hetzelfde lettertype als de pagina. */
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Ik gebruik op desktop meer van de beschikbare breedte. */
+@media (min-width: 768px) {
+  .navbar,
+  .hero,
+  .projects,
+  .about {
+    max-width: 1440px;
+  }
+
+  .hero {
+    padding-block: 32px 40px;
+  }
+}
+
+/* Ik gebruik de gedownloade Bold-versie voor mijn naam en logo. */
+.hero .hero-name,
+.navbar-logo {
+  font-weight: 700;
 }
