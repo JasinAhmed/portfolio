@@ -2,12 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>portfolio</title>
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta
+      name="description"
+      content="Jasin Ahmed’s portfolio. Front-end development student looking for an internship."
+    />
+
+    <title>Jasin Ahmed | Front-end developer</title>
   </head>
+
   <body>
+    <!-- Ik voeg dit toe zodat Netlify mijn contactformulier herkent. -->
+    <!-- De veldnamen zijn hetzelfde als in Contact.jsx. -->
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
+
     <div id="root"></div>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

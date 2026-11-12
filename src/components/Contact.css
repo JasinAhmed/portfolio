@@ -1,0 +1,194 @@
+.contact {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: 0 20px 48px;
+  color: var(--text-color);
+  scroll-margin-top: 24px;
+
+  & a {
+    color: inherit;
+    text-underline-offset: 4px;
+    overflow-wrap: anywhere;
+  }
+
+  & a:focus-visible,
+  & button:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 5px;
+  }
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 48px;
+    padding: 32px 40px 64px;
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+.contact-introduction {
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+
+  & h2 {
+    margin: 0;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+  }
+
+  & p {
+    max-width: 42ch;
+    margin: 16px 0;
+    line-height: 1.7;
+  }
+
+  & a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-weight: 600;
+  }
+
+  @media (min-width: 768px) {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.contact-form {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+  margin-top: 24px;
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
+}
+
+.contact-note {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.contact-field {
+  display: grid;
+  gap: 8px;
+
+  & label {
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  & input,
+  & textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--muted-color);
+    border-radius: 6px;
+    background: var(--page-background);
+    color: var(--text-color);
+    font: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+
+    &:focus-visible {
+      outline: 2px solid var(--text-color);
+      outline-offset: 3px;
+    }
+
+    /* Ik toon pas een foutstijl na interactie met het veld. */
+    &:user-invalid {
+      border-color: currentColor;
+      border-style: dashed;
+    }
+  }
+
+  & input {
+    min-height: 48px;
+  }
+
+  & textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+}
+
+.contact-submit {
+  justify-self: start;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 1px solid var(--text-color);
+  border-radius: 999px;
+  background: var(--text-color);
+  color: var(--page-background);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:is(:hover, :focus-visible):not(:disabled) {
+    background: var(--page-background);
+    color: var(--text-color);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: wait;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+}
+
+.contact-feedback {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 6px;
+  background: var(--soft-background);
+  color: var(--text-color);
+  line-height: 1.6;
+
+  &:focus {
+    outline: 2px solid var(--text-color);
+    outline-offset: 4px;
+  }
+
+  &.contact-feedback-error {
+    border-left-color: var(--text-color);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: contact-feedback-enter 200ms ease-out;
+  }
+}
+
+@keyframes contact-feedback-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
